@@ -6,7 +6,7 @@ export async function createPoll(app: FastifyInstance) {
   app.post("/polls", async (request, reply) => {
     const createPollBody = z.object({
       title: z.string(),
-      options: z.array(z.string()),
+      options: z.array(z.string()).min(2),
     });
 
     const { title, options } = createPollBody.parse(request.body);

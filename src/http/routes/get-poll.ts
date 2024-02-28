@@ -1,4 +1,3 @@
-import console from "console";
 import { FastifyInstance } from "fastify";
 import z from "zod";
 import { prisma } from "../../lib/prisma";
@@ -41,8 +40,6 @@ export async function getPoll(app: FastifyInstance) {
 
       return acc
     }, {} as Record<string, number>)
-
-    console.log(votes);
 
     return reply.send({ poll: {
       id: poll.id,
