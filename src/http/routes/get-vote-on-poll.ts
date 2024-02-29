@@ -1,6 +1,7 @@
 import { FastifyInstance } from "fastify";
 import z from "zod";
 import { prisma } from "../../lib/prisma";
+import { ErrorTypes } from "../../utils/error-catalog";
 
 export async function getVoteOnPoll(app: FastifyInstance) {
   app.get("/polls/:pollId/vote", async (request, reply) => {
@@ -12,11 +13,7 @@ export async function getVoteOnPoll(app: FastifyInstance) {
 
     let { sessionId } = request.cookies;
 
-    if (!sessionId) {
-      return reply
-        .status(404)
-        .send({ message: "You haven't voted on this poll." });
-    }
+    if (!sessionId) throw Error(ErrorTypes.NotVotedOnPoll);
 
     const userVoteOnPoll = await prisma.vote.findUnique({
       where: {
@@ -27,15 +24,11 @@ export async function getVoteOnPoll(app: FastifyInstance) {
       },
     });
 
-    if (!userVoteOnPoll) {
-      return reply
-        .status(404)
-        .send({ message: "You haven't voted on this poll." });
-    }
+    if (!userVoteOnPoll) throw Error(ErrorTypes.NotFoundVoteOnPoll);
 
     return reply.send({
       pollId: userVoteOnPoll.pollId,
       pollOptionId: userVoteOnPoll.pollOptionId,
-    })
+    });
   });
 }

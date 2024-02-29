@@ -3,6 +3,7 @@ import { randomUUID } from "node:crypto";
 import z from "zod";
 import { prisma } from "../../lib/prisma";
 import { redis } from "../../lib/redis";
+import { ErrorTypes } from "../../utils/error-catalog";
 import { voting } from "../../utils/voting-pub-sub";
 
 export async function voteOnPoll(app: FastifyInstance) {
@@ -43,9 +44,7 @@ export async function voteOnPoll(app: FastifyInstance) {
           pollOptionId: userPreviousVoteOnPoll.pollOptionId,
           votes: Number(votes)
         })
-      } else if (userPreviousVoteOnPoll) {
-        return reply.status(400).send({ message: "You already voted on this poll." })
-      }
+      } else if (userPreviousVoteOnPoll) throw Error(ErrorTypes.HasVotedOnPoll)
     }
 
     if (!sessionId) {
