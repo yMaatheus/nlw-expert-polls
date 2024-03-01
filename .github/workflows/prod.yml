@@ -33,7 +33,7 @@ jobs:
         envs: PG_HOST,PG_USER,PG_PASSWORD,PG_PORT,PG_DB,REDIS_HOST,REDIS_PASSWORD,REDIS_PORT,CORS_ORIGIN,APP_HOST,APP_PORT,APP_PUBLIC_PORT
         script: |
           pwd
-          cd /home/nlw-expert-polls
+          cd /home/deploy/nlw-expert-polls
           pwd
           git pull origin master
           git status
