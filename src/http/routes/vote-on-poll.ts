@@ -55,6 +55,7 @@ export async function voteOnPoll(app: FastifyInstance) {
         maxAge: 60 * 60 * 24 * 30, // 30 days
         signed: true,
         httpOnly: true,
+        secure: true,
         sameSite: 'none'
       })
     }
