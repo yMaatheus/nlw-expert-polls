@@ -26,7 +26,6 @@ jobs:
         password: ${{ secrets.SSH_PASSWORD }}
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
         port: ${{ secrets.SSH_PORT }}
-        envs: DATABASE_URL,REDIS_HOST,REDIS_PASSWORD,REDIS_PORT,CORS_ORIGIN,APP_HOST,APP_PORT,APP_PUBLIC_PORT
         allenvs: true
         script: |
           cd /home/deploy/nlw-expert-polls

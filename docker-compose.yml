@@ -4,8 +4,6 @@ services:
   nlw-expert-api:
     container_name: nlw-expert-api
     build: .
-    tty: true # docker run -t
-    stdin_open: true # docker run -i
     restart: always
     ports:
       - ${APP_PUBLIC_PORT}:${APP_PORT}
