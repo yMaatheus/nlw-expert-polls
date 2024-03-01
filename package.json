@@ -6,7 +6,8 @@
   "scripts": {
     "prestart": "prisma migrate deploy",
     "start": "tsx src/http/server.ts",
-    "dev": "tsx watch src/http/server.ts"
+    "dev": "tsx watch src/http/server.ts",
+    "start:compose": "APP_PUBLIC_PORT=3333 APP_PORT=3333 CORS_ORIGIN=* APP_HOST=0.0.0.0 docker compose up -d"
   },
   "keywords": [],
   "author": "",
