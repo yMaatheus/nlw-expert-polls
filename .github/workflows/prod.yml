@@ -31,6 +31,4 @@ jobs:
         script: |
           cd /home/deploy/nlw-expert-polls
           git pull origin master
-          git status
-          npm ci
-          docker compose up -d --build
+          docker compose up -d --no-cache
