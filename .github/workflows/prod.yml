@@ -1,0 +1,38 @@
+name: Deploy
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:       
+    - name: Deploy
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        password: ${{ secrets.SSH_PASSWORD }}
+        passphrase: ${{ secrets.SSH_PASSPHRASE }}
+        port: ${{ secrets.SSH_PORT }}
+        env:
+          PG_HOST: ${{ secrets.PG_HOST }}
+          PG_USER: ${{ secrets.PG_USER }}
+          PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
+          PG_PORT: ${{ secrets.PG_PORT }}
+          PG_DB: ${{ secrets.PG_DB }}
+          REDIS_HOST: ${{ secrets.REDIS_HOST }}
+          REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
+          REDIS_PORT: ${{ secrets.REDIS_PORT }}
+          CORS_ORIGIN: ${{ secrets.CORS_ORIGIN }}
+          APP_HOST: ${{ secrets.APP_HOST }}
+          APP_PORT: ${{ secrets.APP_PORT }}
+          APP_PUBLIC_PORT: ${{ secrets.APP_PUBLIC_PORT }}
+        script: |
+          cd ${{ secrets.APP_PATH }}/
+          git pull origin master
+          git status
+          npm install
+          docker compose up -d --build
