@@ -10,12 +10,12 @@ import { getVoteOnPoll } from "./routes/get-vote-on-poll";
 import { voteOnPoll } from "./routes/vote-on-poll";
 import { pollResults } from "./ws/poll-results";
 
-const { PORT: port, HOST: host, origin } = parseEnv(process.env)
+const { PORT: port, HOST: host } = parseEnv(process.env)
 
 const app = fastify();
 
 app.register(cors, {
-  origin,
+  origin: true,
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
 });
