@@ -11,13 +11,7 @@ jobs:
     steps:       
     - name: Deploy with SSH
       uses: appleboy/ssh-action@v1.0.3
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        password: ${{ secrets.SSH_PASSWORD }}
-        passphrase: ${{ secrets.SSH_PASSPHRASE }}
-        port: ${{ secrets.SSH_PORT }}
-        env:
+      env:
           PG_HOST: ${{ secrets.PG_HOST }}
           PG_USER: ${{ secrets.PG_USER }}
           PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
@@ -30,6 +24,13 @@ jobs:
           APP_HOST: ${{ secrets.APP_HOST }}
           APP_PORT: ${{ secrets.APP_PORT }}
           APP_PUBLIC_PORT: ${{ secrets.APP_PUBLIC_PORT }}
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        password: ${{ secrets.SSH_PASSWORD }}
+        passphrase: ${{ secrets.SSH_PASSPHRASE }}
+        port: ${{ secrets.SSH_PORT }}
+        envs: PG_HOST,PG_USER,PG_PASSWORD,PG_PORT,PG_DB,REDIS_HOST,REDIS_PASSWORD,REDIS_PORT,CORS_ORIGIN,APP_HOST,APP_PORT,APP_PUBLIC_PORT
         script: |
           cd ${{ secrets.APP_PATH }}/
           git pull origin master
