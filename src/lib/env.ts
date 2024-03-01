@@ -2,8 +2,12 @@ import { z } from "zod";
 
 export function parseEnv(env: NodeJS.ProcessEnv) {
   const envSchema = z.object({
+    HOST: z.string(),
     PORT: z.coerce.number(),
-    origin: z.string().url(),
+    origin: z.string(),
+    REDIS_HOST: z.string(),
+    REDIS_PORT: z.coerce.number(),
+    REDIS_PASSWORD: z.string(),
   });
 
   const parsedEnv = envSchema.safeParse(env);
