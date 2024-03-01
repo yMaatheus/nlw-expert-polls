@@ -12,11 +12,7 @@ jobs:
     - name: Deploy with SSH
       uses: appleboy/ssh-action@v1.0.3
       env:
-          PG_HOST: ${{ secrets.PG_HOST }}
-          PG_USER: ${{ secrets.PG_USER }}
-          PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
-          PG_PORT: ${{ secrets.PG_PORT }}
-          PG_DB: ${{ secrets.PG_DB }}
+          DATABASE_URL: ${{ secrets.PG_DATABASE_URL }}
           REDIS_HOST: ${{ secrets.REDIS_HOST }}
           REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
           REDIS_PORT: ${{ secrets.REDIS_PORT }}
@@ -30,7 +26,7 @@ jobs:
         password: ${{ secrets.SSH_PASSWORD }}
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
         port: ${{ secrets.SSH_PORT }}
-        envs: PG_HOST,PG_USER,PG_PASSWORD,PG_PORT,PG_DB,REDIS_HOST,REDIS_PASSWORD,REDIS_PORT,CORS_ORIGIN,APP_HOST,APP_PORT,APP_PUBLIC_PORT
+        envs: DATABASE_URL,REDIS_HOST,REDIS_PASSWORD,REDIS_PORT,CORS_ORIGIN,APP_HOST,APP_PORT,APP_PUBLIC_PORT
         allenvs: true
         script: |
           cd /home/deploy/nlw-expert-polls
