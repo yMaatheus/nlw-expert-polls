@@ -56,7 +56,8 @@ export async function voteOnPoll(app: FastifyInstance) {
         signed: true,
         httpOnly: true,
         sameSite: 'none',
-        secure: true
+        secure: true,
+        partitioned: true
       })
     }
 
