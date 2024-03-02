@@ -53,7 +53,7 @@ export async function voteOnPoll(app: FastifyInstance) {
       reply.setCookie('sessionId', sessionId, {
         path: '/',
         maxAge: 60 * 60 * 24 * 30, // 30 days
-        // signed: true,
+        signed: true,
         httpOnly: true,
         sameSite: 'none',
         secure: true
