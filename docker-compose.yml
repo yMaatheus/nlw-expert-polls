@@ -12,7 +12,6 @@ services:
       - REDIS_HOST=${REDIS_HOST}
       - REDIS_PORT=${REDIS_PORT}
       - REDIS_PASSWORD=${REDIS_PASSWORD}
-      - origin=${CORS_ORIGIN}
       - HOST=${APP_HOST}
       - PORT=${APP_PORT}
     networks:
