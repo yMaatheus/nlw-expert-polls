@@ -15,7 +15,7 @@ const { PORT: port, HOST: host } = parseEnv(process.env)
 const app = fastify();
 
 app.register(cors, {
-  origin: true,
+  origin: ['http://localhost:3000', 'https://polls-app-nlw.vercel.app', 'https://enquete.ymaatheus.tech', '135.148.95.85'],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
 });
