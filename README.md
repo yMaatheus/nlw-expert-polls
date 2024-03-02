@@ -2,7 +2,7 @@
 
 Crie uma enquete online e compartilhe com seus amigos e veja os resultados em tempo real!
 
-👋 Eii, vela a pena dar uma olhada na implementação do [Polls Frontend](https://github.com/yMaatheus/polls-front/) com esse projeto em produção!
+👋 Eii, vale a pena dar uma olhada na implementação do [Polls Frontend](https://github.com/yMaatheus/polls-front/) com esse projeto em produção!
 
 ## 💻 Projeto
 
